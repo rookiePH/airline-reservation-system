@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ssm.mapper.OrderDTOMapper">
+  <resultMap id="showOrders" type="ssm.dto.OrderDTO">
+    <id column="order_id" property="orderId"/>
+      <result column="user_id" property="userId"/>
+    <result column="flight_id" property="flightId"/>
+    <result column="seat_id" property="seatId"/>
+    <result column="stacity" property="stacity"/>
+    <result column="tarrcity" property="tarrcity"/>
+    <result column="depaturetime" property="depaturetime"/>
+    <result column="arrivaltime" property="arrivaltime"/>
+    <result column="flighttype" property="flighttype"/>
+    <result column="tarrcity" property="tarrcity"/>
+  </resultMap>
+
+
+<select id="SelectOrdersByUserId" parameterType="ssm.dto.OrderDTO" resultMap="showOrders">
+   SELECT flightinfor.flight_id,flightinfor.stacity,flightinfor.tarrcity,flightinfor.depaturetime,flightinfor.arrivaltime,flightinfor.flighttype,flightinfor.price,orderinfor.order_id,seatinfor.seat_id
+    FROM orderinfor,flightinfor,seatinfor,userinfor
+    WHERE orderinfor.flight_id=flightinfor.flight_id AND seatinfor.user_id=userinfor.user_id AND flightinfor.flight_id=seatinfor.flight_id
+    AND userinfor.user_id=orderinfor.user_id AND seatinfor.seat_id=orderinfor.seat_id AND orderinfor.user_id=#{UserId}
+  </select>
+
+    <select id="queryorderByOrderId" parameterType="ssm.dto.OrderDTO" resultMap="showOrders">
+   SELECT flightinfor.flight_id,flightinfor.stacity,flightinfor.tarrcity,flightinfor.depaturetime,flightinfor.arrivaltime,flightinfor.flighttype,flightinfor.price,orderinfor.order_id,seatinfor.seat_id
+    FROM orderinfor,flightinfor,seatinfor,userinfor
+    WHERE orderinfor.order_id = #{orderDTO}
+  </select>
+</mapper>

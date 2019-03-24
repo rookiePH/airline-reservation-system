@@ -1,0 +1,52 @@
+@charset "utf-8";
+/*通配符 代表所有標籤*/
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.o_box{
+	width: 1150px;
+	height: 250px;
+	border: 1px solid black;
+	margin: auto;
+}
+.box1{
+	height: 50px;
+	width: 200px;
+	font-size: 25px;
+	margin: 15px;
+	
+	line-height: 50px;
+}
+.box2{
+	height: 50px;
+	width: 200px;
+	font-size: 25px;
+	margin-left: 15px;
+	
+	line-height: 50px;
+}
+.box3{
+	height: 120px;
+	width: 1150px;
+}
+.box3_1{
+	height: 120px;
+	width: 160px;
+	float: left;
+}
+.span1{
+	width: 160px;
+	height: 45px;
+	font-size: 20px;
+	text-align:center;
+	line-height: 45px;
+}
+.print{
+	height: 60px;
+	width: 155px;
+	margin-left: 2px;
+	border-bottom: 1px solid black;
+	text-align:center;
+	line-height: 60px;
+}

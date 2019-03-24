@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.FlightinforMapper">
+  <resultMap id="BaseResultMap" type="ssm.pojo.Flightinfor">
+    <id column="flight_id" jdbcType="INTEGER" property="flightId" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="stacity" jdbcType="VARCHAR" property="stacity" />
+    <result column="tarrcity" jdbcType="VARCHAR" property="tarrcity" />
+    <result column="depaturetime" jdbcType="TIMESTAMP" property="depaturetime" />
+    <result column="arrivaltime" jdbcType="TIMESTAMP" property="arrivaltime" />
+    <result column="flighttype" jdbcType="VARCHAR" property="flighttype" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="ticketsleft" jdbcType="INTEGER" property="ticketsleft" />
+    <result column="startariport" jdbcType="VARCHAR" property="startariport" />
+    <result column="arrivingairport" jdbcType="VARCHAR" property="arrivingairport" />
+    <result column="discount" jdbcType="VARCHAR" property="discount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    flight_id, company, stacity, tarrcity, depaturetime, arrivaltime, flighttype, price, 
+    ticketsleft, startariport, arrivingairport, discount
+  </sql>
+  <select id="selectByExample" parameterType="ssm.pojo.FlightinforExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from flightinfor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from flightinfor
+    where flight_id = #{flightId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from flightinfor
+    where flight_id = #{flightId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="ssm.pojo.FlightinforExample">
+    delete from flightinfor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="ssm.pojo.Flightinfor">
+    insert into flightinfor (flight_id, company, stacity, 
+      tarrcity, depaturetime, arrivaltime, 
+      flighttype, price, ticketsleft, 
+      startariport, arrivingairport, discount
+      )
+    values (#{flightId,jdbcType=INTEGER}, #{company,jdbcType=VARCHAR}, #{stacity,jdbcType=VARCHAR}, 
+      #{tarrcity,jdbcType=VARCHAR}, #{depaturetime,jdbcType=TIMESTAMP}, #{arrivaltime,jdbcType=TIMESTAMP}, 
+      #{flighttype,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{ticketsleft,jdbcType=INTEGER}, 
+      #{startariport,jdbcType=VARCHAR}, #{arrivingairport,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="ssm.pojo.Flightinfor">
+    insert into flightinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="flightId != null">
+        flight_id,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="stacity != null">
+        stacity,
+      </if>
+      <if test="tarrcity != null">
+        tarrcity,
+      </if>
+      <if test="depaturetime != null">
+        depaturetime,
+      </if>
+      <if test="arrivaltime != null">
+        arrivaltime,
+      </if>
+      <if test="flighttype != null">
+        flighttype,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="ticketsleft != null">
+        ticketsleft,
+      </if>
+      <if test="startariport != null">
+        startariport,
+      </if>
+      <if test="arrivingairport != null">
+        arrivingairport,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="flightId != null">
+        #{flightId,jdbcType=INTEGER},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="stacity != null">
+        #{stacity,jdbcType=VARCHAR},
+      </if>
+      <if test="tarrcity != null">
+        #{tarrcity,jdbcType=VARCHAR},
+      </if>
+      <if test="depaturetime != null">
+        #{depaturetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivaltime != null">
+        #{arrivaltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flighttype != null">
+        #{flighttype,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketsleft != null">
+        #{ticketsleft,jdbcType=INTEGER},
+      </if>
+      <if test="startariport != null">
+        #{startariport,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivingairport != null">
+        #{arrivingairport,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="ssm.pojo.FlightinforExample" resultType="java.lang.Integer">
+    select count(*) from flightinfor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update flightinfor
+    <set>
+      <if test="record.flightId != null">
+        flight_id = #{record.flightId,jdbcType=INTEGER},
+      </if>
+      <if test="record.company != null">
+        company = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stacity != null">
+        stacity = #{record.stacity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tarrcity != null">
+        tarrcity = #{record.tarrcity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depaturetime != null">
+        depaturetime = #{record.depaturetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.arrivaltime != null">
+        arrivaltime = #{record.arrivaltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.flighttype != null">
+        flighttype = #{record.flighttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ticketsleft != null">
+        ticketsleft = #{record.ticketsleft,jdbcType=INTEGER},
+      </if>
+      <if test="record.startariport != null">
+        startariport = #{record.startariport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrivingairport != null">
+        arrivingairport = #{record.arrivingairport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discount != null">
+        discount = #{record.discount,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update flightinfor
+    set flight_id = #{record.flightId,jdbcType=INTEGER},
+      company = #{record.company,jdbcType=VARCHAR},
+      stacity = #{record.stacity,jdbcType=VARCHAR},
+      tarrcity = #{record.tarrcity,jdbcType=VARCHAR},
+      depaturetime = #{record.depaturetime,jdbcType=TIMESTAMP},
+      arrivaltime = #{record.arrivaltime,jdbcType=TIMESTAMP},
+      flighttype = #{record.flighttype,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      ticketsleft = #{record.ticketsleft,jdbcType=INTEGER},
+      startariport = #{record.startariport,jdbcType=VARCHAR},
+      arrivingairport = #{record.arrivingairport,jdbcType=VARCHAR},
+      discount = #{record.discount,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.pojo.Flightinfor">
+    update flightinfor
+    <set>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="stacity != null">
+        stacity = #{stacity,jdbcType=VARCHAR},
+      </if>
+      <if test="tarrcity != null">
+        tarrcity = #{tarrcity,jdbcType=VARCHAR},
+      </if>
+      <if test="depaturetime != null">
+        depaturetime = #{depaturetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivaltime != null">
+        arrivaltime = #{arrivaltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flighttype != null">
+        flighttype = #{flighttype,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketsleft != null">
+        ticketsleft = #{ticketsleft,jdbcType=INTEGER},
+      </if>
+      <if test="startariport != null">
+        startariport = #{startariport,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivingairport != null">
+        arrivingairport = #{arrivingairport,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where flight_id = #{flightId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ssm.pojo.Flightinfor">
+    update flightinfor
+    set company = #{company,jdbcType=VARCHAR},
+      stacity = #{stacity,jdbcType=VARCHAR},
+      tarrcity = #{tarrcity,jdbcType=VARCHAR},
+      depaturetime = #{depaturetime,jdbcType=TIMESTAMP},
+      arrivaltime = #{arrivaltime,jdbcType=TIMESTAMP},
+      flighttype = #{flighttype,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      ticketsleft = #{ticketsleft,jdbcType=INTEGER},
+      startariport = #{startariport,jdbcType=VARCHAR},
+      arrivingairport = #{arrivingairport,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=VARCHAR}
+    where flight_id = #{flightId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,75 @@
+@charset "utf-8";
+/*通配符 代表所有標籤*/
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.p_box{
+	width: 1150px;
+	height: 250px;
+	border: 1px solid black;
+	margin: auto;
+}
+.box1{
+	width: 150px;
+	height: 150px;
+	border: 1px solid black;
+	margin-top: 50px;
+	margin-left: 50px;
+	float: left;
+}
+.box1_1{
+	height: 35px;
+	width: 140px;
+	text-align:center;
+	line-height: 35px;
+}
+.box1_2{
+	height: 50px;
+	width: 140px;
+}
+.p_text{
+	width: 80px;
+	height: 22px;
+	margin-left: 28px;
+	margin-top: 3px;
+	border-style: none;
+	border: 1px solid #BBBBBB;
+	outline: none;
+	padding-left: 5px;
+}
+.button{
+	width: 100px;
+	height: 30px;
+
+	border-style: none;
+	outline: none;
+	border: 1px solid #0B6ED0;
+	border-radius: 3px;
+
+	color: #0B6ED0;
+
+	background: #EAF0F3;
+
+	margin: 10px 0px 0px 25px;
+	float: left;
+}
+.box2_1{
+	width: 180px;
+	height: 30px;
+	text-align:center;
+	line-height: 30px;
+	margin-top: 50px;
+	margin-left: 20px;
+	float: left;
+}
+.box2_1 span{
+	float: left;
+	font-size: 15px;
+}
+.print{
+	float: left;
+	width: 110px;
+	height: 24px;
+	border-bottom: 1px solid black;
+}

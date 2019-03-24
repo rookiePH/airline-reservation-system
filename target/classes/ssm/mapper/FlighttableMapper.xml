@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.FlighttableMapper">
+  <resultMap id="BaseResultMap" type="ssm.pojo.Flighttable">
+    <id column="flightId" jdbcType="INTEGER" property="flightid" />
+    <result column="flightName" jdbcType="VARCHAR" property="flightname" />
+    <result column="startTime" jdbcType="TIMESTAMP" property="starttime" />
+    <result column="arrivalTime" jdbcType="TIMESTAMP" property="arrivaltime" />
+    <result column="startPlace" jdbcType="VARCHAR" property="startplace" />
+    <result column="endPlace" jdbcType="VARCHAR" property="endplace" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    flightId, flightName, startTime, arrivalTime, startPlace, endPlace
+  </sql>
+  <select id="selectByExample" parameterType="ssm.pojo.FlighttableExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from flighttable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from flighttable
+    where flightId = #{flightid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from flighttable
+    where flightId = #{flightid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="ssm.pojo.FlighttableExample">
+    delete from flighttable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="ssm.pojo.Flighttable">
+    insert into flighttable (flightId, flightName, startTime, 
+      arrivalTime, startPlace, endPlace
+      )
+    values (#{flightid,jdbcType=INTEGER}, #{flightname,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
+      #{arrivaltime,jdbcType=TIMESTAMP}, #{startplace,jdbcType=VARCHAR}, #{endplace,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="ssm.pojo.Flighttable">
+    insert into flighttable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="flightid != null">
+        flightId,
+      </if>
+      <if test="flightname != null">
+        flightName,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="arrivaltime != null">
+        arrivalTime,
+      </if>
+      <if test="startplace != null">
+        startPlace,
+      </if>
+      <if test="endplace != null">
+        endPlace,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="flightid != null">
+        #{flightid,jdbcType=INTEGER},
+      </if>
+      <if test="flightname != null">
+        #{flightname,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivaltime != null">
+        #{arrivaltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startplace != null">
+        #{startplace,jdbcType=VARCHAR},
+      </if>
+      <if test="endplace != null">
+        #{endplace,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="ssm.pojo.FlighttableExample" resultType="java.lang.Integer">
+    select count(*) from flighttable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update flighttable
+    <set>
+      <if test="record.flightid != null">
+        flightId = #{record.flightid,jdbcType=INTEGER},
+      </if>
+      <if test="record.flightname != null">
+        flightName = #{record.flightname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null">
+        startTime = #{record.starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.arrivaltime != null">
+        arrivalTime = #{record.arrivaltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.startplace != null">
+        startPlace = #{record.startplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endplace != null">
+        endPlace = #{record.endplace,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update flighttable
+    set flightId = #{record.flightid,jdbcType=INTEGER},
+      flightName = #{record.flightname,jdbcType=VARCHAR},
+      startTime = #{record.starttime,jdbcType=TIMESTAMP},
+      arrivalTime = #{record.arrivaltime,jdbcType=TIMESTAMP},
+      startPlace = #{record.startplace,jdbcType=VARCHAR},
+      endPlace = #{record.endplace,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.pojo.Flighttable">
+    update flighttable
+    <set>
+      <if test="flightname != null">
+        flightName = #{flightname,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        startTime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivaltime != null">
+        arrivalTime = #{arrivaltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startplace != null">
+        startPlace = #{startplace,jdbcType=VARCHAR},
+      </if>
+      <if test="endplace != null">
+        endPlace = #{endplace,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where flightId = #{flightid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ssm.pojo.Flighttable">
+    update flighttable
+    set flightName = #{flightname,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=TIMESTAMP},
+      arrivalTime = #{arrivaltime,jdbcType=TIMESTAMP},
+      startPlace = #{startplace,jdbcType=VARCHAR},
+      endPlace = #{endplace,jdbcType=VARCHAR}
+    where flightId = #{flightid,jdbcType=INTEGER}
+  </update>
+</mapper>

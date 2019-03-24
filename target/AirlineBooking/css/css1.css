@@ -1,0 +1,98 @@
+@charset "utf-8";
+/*通配符 代表所有標籤*/
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#s_ti{
+
+	margin-left: 250px;
+}
+#s_tl{
+	float: left;
+	width: 140px;
+	height: 250px;
+}
+.s_t1{
+	width: 140px;
+	height: 80px;
+	float: left;
+}
+.s_submit1{
+	margin-top:calc(25%);
+	width: 140px;
+	height: 30px;
+
+	border-style: none;
+	background: #BBBBBB;
+	
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+}
+.s_submit3{
+	float: left;
+	margin:40px 80px;
+	width: 140px;
+	height: 30px;
+
+	border-style: none;
+	background: #FFB000;
+	
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+}
+.s_box{
+	width: 1500px;
+	height: 550px;
+	border: 1px solid black;
+	margin: auto;
+}
+
+.s_label{
+	margin: auto 5px;
+}
+
+#s_row{
+	margin-top: 30px;
+	margin-left: 150px;
+	display: block;
+	float: left;
+}
+#s_row1{}
+#s_row2{
+	margin-top: 50px;
+	margin-left: 300px;
+	display: none;
+}#s_row2_1{
+	left: 50px;
+}
+#s_row3{
+	margin-top: 50px;
+	margin-left: 300px;
+	display: none;
+}
+.s_text{
+
+	width: 135px;
+	height: 22px;
+	margin-right: 5px;
+
+	border-style: none;
+	border: 1px solid #BBBBBB;
+	outline: none;
+	padding-left: 5px;
+}
+.s_submit{
+	margin: 24px 150px;
+	width: 140px;
+	height: 30px;
+
+	border-style: none;
+	background: #FFB000;
+	
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+}

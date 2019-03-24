@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.SeatinforMapper">
+  <resultMap id="BaseResultMap" type="ssm.pojo.Seatinfor">
+    <result column="seat_id" jdbcType="INTEGER" property="seatId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="seattype" jdbcType="VARCHAR" property="seattype" />
+    <result column="seatstate" jdbcType="INTEGER" property="seatstate" />
+    <result column="flight_id" jdbcType="INTEGER" property="flightId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    seat_id, user_id, seattype, seatstate, flight_id
+  </sql>
+  <select id="selectByExample" parameterType="ssm.pojo.SeatinforExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from seatinfor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="ssm.pojo.SeatinforExample">
+    delete from seatinfor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="ssm.pojo.Seatinfor">
+    insert into seatinfor (seat_id, user_id, seattype, 
+      seatstate, flight_id)
+    values (#{seatId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{seattype,jdbcType=VARCHAR}, 
+      #{seatstate,jdbcType=INTEGER}, #{flightId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="ssm.pojo.Seatinfor">
+    insert into seatinfor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="seatId != null">
+        seat_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="seattype != null">
+        seattype,
+      </if>
+      <if test="seatstate != null">
+        seatstate,
+      </if>
+      <if test="flightId != null">
+        flight_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="seatId != null">
+        #{seatId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="seattype != null">
+        #{seattype,jdbcType=VARCHAR},
+      </if>
+      <if test="seatstate != null">
+        #{seatstate,jdbcType=INTEGER},
+      </if>
+      <if test="flightId != null">
+        #{flightId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="ssm.pojo.SeatinforExample" resultType="java.lang.Integer">
+    select count(*) from seatinfor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update seatinfor
+    <set>
+      <if test="record.seatId != null">
+        seat_id = #{record.seatId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seattype != null">
+        seattype = #{record.seattype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seatstate != null">
+        seatstate = #{record.seatstate,jdbcType=INTEGER},
+      </if>
+      <if test="record.flightId != null">
+        flight_id = #{record.flightId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update seatinfor
+    set seat_id = #{record.seatId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      seattype = #{record.seattype,jdbcType=VARCHAR},
+      seatstate = #{record.seatstate,jdbcType=INTEGER},
+      flight_id = #{record.flightId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
